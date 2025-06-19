@@ -1,12 +1,10 @@
 <?php
-$banco = new PDO("sqlite:tarefas.db");
-$banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+if (isset($_POST["descricao"]) && isset($_POST["vencimento"])) {
+    include "database.php";
 
-
-$banco->exec("CREATE TABLE IF NOT EXISTS tarefas (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    descricao TEXT,
-    vencimento TEXT,
-    concluida INTEGER DEFAULT 0
-)");
+    $comando = $banco->prepare("INSERT INTO tarefas (descricao, vencimento) VALUES (?, ?)");
+    $comando->execute([$_POST["descricao"], $_POST["vencimento"]]);
+    header("Location: index.php");
+    exit();
+}
 ?>

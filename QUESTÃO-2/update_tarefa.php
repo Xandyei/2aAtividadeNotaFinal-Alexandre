@@ -1,9 +1,8 @@
 <?php
-if (isset($_POST["descricao"]) && isset($_POST["vencimento"])) {
+if (isset($_GET["id"])) {
     include "database.php";
-
-    $comando = $banco->prepare("INSERT INTO tarefas (descricao, vencimento) VALUES (?, ?)");
-    $comando->execute([$_POST["descricao"], $_POST["vencimento"]]);
+    $comando = $banco->prepare("UPDATE tarefas SET concluida = 1 WHERE id = ?");
+    $comando->execute([$_GET["id"]]);
     header("Location: index.php");
     exit();
 }
