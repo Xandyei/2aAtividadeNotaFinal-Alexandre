@@ -1,6 +1,6 @@
 <?php
 include "database.php";
-$livros = $db->query("SELECT * FROM livros")->fetchAll(PDO::FETCH_ASSOC);
+$livros = $banco->query("SELECT * FROM livros")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
